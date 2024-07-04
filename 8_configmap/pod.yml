@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-name
+  labels:
+    app: web
+spec:
+  containers:
+  - name: redis-name
+    image: mongo
+    env:
+    - name: DATABASE_URL
+      valueFrom:
+        configMapKeyRef:
+          name: config-name
+          key: database_url
+    - name: FEATURE_X_ENABLED
+      valueFrom:
+        configMapKeyRef:
+          name: config-name
+          key: feature_x_enabled

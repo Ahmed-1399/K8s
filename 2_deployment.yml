@@ -1,0 +1,28 @@
+apiVersion: apps/v1    # V
+kind: Deployment       # D
+metadata: 
+  # Name of Deployment
+  name: webserver
+  labels:
+    deploy: nginx
+# Specification of Deployment  
+spec:
+  # Number of Replicas Pod
+  replicas: 5
+  # Identify which Pods will be managed by Deployment
+  selector:
+    # Identify which Pod the [ Label of pod match]  'app: web'
+    matchLabels:       # L
+      app: web
+  # Template for the [ Pod ] that should be Created
+  template:
+    metadata:
+      labels:
+        app: web
+    # Specification of Pod  
+    spec:
+      containers:
+      - name: web
+        image: nginx:latest
+        ports:
+        - containerPort: 80

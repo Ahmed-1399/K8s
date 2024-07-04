@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-name
+data:
+  database_url: "mongodb://localhost:27017"
+  feature_x_enabled: "true"

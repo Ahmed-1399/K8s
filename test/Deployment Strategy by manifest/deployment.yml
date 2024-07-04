@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-name
+spec:
+  replicas: 5
+  # Deployment Strategy Type
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      name: pod-name
+      labels: 
+        app: web
+    spec:
+      containers:
+      - name: container-name
+        image: ahmed1399/node-deploy2:1.2.0
+        ports:
+        - containerPort: 80

@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  # route traffic from Single IP Address to multiple Service
+  name: fanout
+spec:
+  rules:
+  - host: fanout.io
+    http:
+      paths:
+      # Path 1
+      - path: /
+        pathType: Prefix      # P
+        backend:
+          service:
+            name: app1
+            port:
+              number: 80
+      #  Path 2
+      - path: /app2
+        pathType: Prefix      # P
+        backend:
+          service:
+            name: app2
+            port:
+              number: 8080
+      # Path 3
+      - path: /app3
+        pathType: Prefix      # P
+        backend:
+          service:
+            name: app3
+            port:
+              number: 8080

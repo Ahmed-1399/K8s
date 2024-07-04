@@ -1,0 +1,17 @@
+# Pod [ v1 ]
+apiVersion: v1
+kind: Pod
+metadata:
+  # Name of Pod
+  name: nginx  
+  # Labels
+  labels:
+    name: ahmed
+    # age: 25
+    country: egypt 
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+    ports:
+    - containerPort: 80

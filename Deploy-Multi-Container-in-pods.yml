@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-name
+spec:
+  #  مش هيقوم واحد جديد Failed to Container لو حصل
+  restartPolicy: Never
+  # [ Create Volume ] to share Storage between Containers
+  volumes:
+  - name: volume-name
+    # بينشأ وحده تخزين فارغة
+    # Name of Volume
+    # Creates when Pod Creates
+    emptyDir: {}
+  containers:
+  - name: nginx-name
+    image: nginx
+    volumeMounts:
+    - name: volume-name
+      mountPath: /usr/share/nginx/html
+
+  - name: ubuntu-name
+    image: ubuntu
+    volumeMounts:
+    - name: volume-name 
+      mountPath: /pod-data
+      # ENTRYPOINT in Docker
+      # نفسه Containerعلي الRun Command لما تكون عاوز تعمل  
+    command: ["/bin/sh"]
+      # CMD in Docker
+      # Containerجوه ال command رايحة تتنفذ علي Argument بتستخدمة لما تكوت عاوز تبعت  
+    args: ["-c", "echo hello from Deploying Multi-Container Pod in K8s > /pod-data/index.html"]

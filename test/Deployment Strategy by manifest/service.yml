@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-name
+spec:
+  # Identify which pod the Service will route traffic to the pod
+  selector:
+    app: web
+  ports:
+  - port: 80
+    targetPort: 3000
+  type: NodePort
